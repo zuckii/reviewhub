@@ -11,14 +11,12 @@
 </head>
 <body>
 
+    {% if not request.endpoint or not request.endpoint.startswith('auth') %}
     <header class="site-nav">
         <div class="container">
             <a class="brand" href="{{ url_for('home.homepage') }}">ReviewHub</a>
             <nav>
-                <a href="{{ url_for('home.homepage') }}">Home</a>
-                <a href="{{ url_for('movies.details', id=1) }}">Filmes</a>
-
-                {% if session.get('user_id') %}
+                {% if session.get('user_id') or session.get('guest_mode') %}
                     <a href="{{ url_for('auth.logout') }}" class="btn">Sair</a>
                 {% else %}
                     <a href="{{ url_for('auth.login') }}">Entrar</a>
@@ -27,21 +25,25 @@
             </nav>
         </div>
     </header>
+    {% endif %}
 
     
-    <main>
+    <main{% if request.endpoint and request.endpoint.startswith('auth') %} class="auth-main"{% endif %}>
         {% block content %}{% endblock %}
     </main>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     {% block scripts %}{% endblock %}
+    {% if not request.endpoint or not request.endpoint.startswith('auth') %}
     <footer class="site-footer">
         <div class="container">
-            <div class="credit">&copy; {{ now().year if now is defined else '2025' }} ReviewHub</div>
-            <div class="links muted">Built with Flask • <a href="/">Home</a></div>
+            <p class="credit">&copy; ReviewHub  {{ now().year if now is defined else '2025' }}</p>
+            <p>•</p>
+            <p class="muted">Built with Flask</p>
         </div>
         {% block footer %}{% endblock %}
     </footer>
+    {% endif %}
 </body>
 </html>

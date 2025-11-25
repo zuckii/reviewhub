@@ -12,8 +12,16 @@ def register():
     return render_template("auth/register.html")
 
 
+@auth_bp.route("/guest")
+def guest_login():
+    # enable guest mode for development
+    session['guest_mode'] = True
+    return redirect(url_for("home.homepage"))
+
+
 @auth_bp.route("/logout")
 def logout():
-    # clear user session and redirect to homepage
+    # clear user session and redirect to login
     session.pop("user_id", None)
-    return redirect(url_for("home.homepage"))
+    session.pop("guest_mode", None)
+    return redirect(url_for("auth.login"))
