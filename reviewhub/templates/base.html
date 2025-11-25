@@ -11,17 +11,22 @@
 </head>
 <body>
 
-    <nav>
-        <a href="{{ url_for('home.homepage') }}">Home</a>
-    <a href="{{ url_for('movies.details', id=1) }}">Filmes</a>
+    <header class="site-nav">
+        <div class="container">
+            <a class="brand" href="{{ url_for('home.homepage') }}">ReviewHub</a>
+            <nav>
+                <a href="{{ url_for('home.homepage') }}">Home</a>
+                <a href="{{ url_for('movies.details', id=1) }}">Filmes</a>
 
-        {% if session.get('user_id') %}
-            <a href="{{ url_for('auth.logout') }}">Sair</a>
-        {% else %}
-            <a href="{{ url_for('auth.login') }}">Entrar</a>
-            <a href="{{ url_for('auth.register') }}">Cadastrar</a>
-        {% endif %}
-    </nav>
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('auth.logout') }}" class="btn">Sair</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}">Entrar</a>
+                    <a href="{{ url_for('auth.register') }}" class="btn">Cadastrar</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
 
     
     <main>
@@ -31,5 +36,12 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     {% block scripts %}{% endblock %}
+    <footer class="site-footer">
+        <div class="container">
+            <div class="credit">&copy; {{ now().year if now is defined else '2025' }} ReviewHub</div>
+            <div class="links muted">Built with Flask • <a href="/">Home</a></div>
+        </div>
+        {% block footer %}{% endblock %}
+    </footer>
 </body>
 </html>
