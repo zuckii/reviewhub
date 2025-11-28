@@ -1,10 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}ReviewHub{% endblock %}
+{% block title %}ReviewHub - Filmes{% endblock %}
 
 {% block content %}
-<p>Renderizado a partir de um template!</p>
-<p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum optio perspiciatis vitae ducimus eius a ad at doloribus consequatur illo minus in error commodi, necessitatibus, ut quia repudiandae et? Quasi.</p>
-<p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum optio perspiciatis vitae ducimus eius a ad at doloribus consequatur illo minus in error commodi, necessitatibus, ut quia repudiandae et? Quasi.</p>
-<p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum optio perspiciatis vitae ducimus eius a ad at doloribus consequatur illo minus in error commodi, necessitatibus, ut quia repudiandae et? Quasi Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas accusantium, quas optio accusamus incidunt perspiciatis suscipit quos. Debitis perspiciatis aspernatur, architecto eaque quasi excepturi officia et laboriosam similique voluptate exercitationem. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, repudiandae obcaecati! Vitae nemo tenetur, repellat ullam unde quas ab et autem omnis veniam saepe dicta vel nihil recusandae non eos?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab rerum, dolore quos odit quasi distinctio voluptatibus expedita suscipit doloribus nobis, ratione nostrum saepe voluptas soluta eaque dolorum. Molestias, optio numquam!Loremlorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia aliquam dolores omnis, ipsam fugiat doloremque quisquam sit saepe ad quidem necessitatibus esse atque ullam voluptatibus impedit inventore hic! Voluptatum, aut. lorem    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, necessitatibus veritatis! Voluptatum nesciunt eveniet voluptates qui, inventore, libero debitis minima dolorum eum, reiciendis nulla eos non aperiam magni earum sed? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo, illo! At ipsum, consequuntur, repellendus ducimus non aperiam quas quia quam magni iure, excepturi a quae quidem placeat vitae fugit esse? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint unde, iusto numquam saepe expedita incidunt quae blanditiis omnis voluptatem vero eligendi odio cupiditate quidem cumque, ipsam, dolor praesentium impedit rerum? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non corporis, consectetur dolorum ab id tempora velit, porro tempore, optio vero doloremque voluptates deserunt dicta facere assumenda illum exercitationem magnam beatae? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto ducimus magnam dolorem sed nihil ut aspernatur dolores. Recusandae quasi mollitia nostrum similique, sunt quos ab blanditiis consequatur exercitationem dolore. Dolore! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore ex ipsa consequuntur, fuga debitis repellendus voluptatibus a ratione officia numquam? Blanditiis pariatur expedita, rerum ipsa dicta aut? Laudantium, excepturi dicta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro veniam animi voluptatem fuga odio quas, perferendis voluptates praesentium distinctio dignissimos, maiores quibusdam odit? Reprehenderit quam non, enim fuga autem alias! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis maiores placeat enim aliquid iure assumenda molestiae cumque quos ut suscipit veritatis beatae libero, porro ipsam adipisci, consequatur harum repellendus. Modi? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos tenetur fugit esse recusandae corporis molestiae, necessitatibus incidunt ullam aut facere quaerat ut reprehenderit itaque assumenda, eos ipsam quia iure dolorem..</p>
+<div class="movies-header">
+    <h1>Filmes Populares</h1>
+    <p class="subtitle">Selecione um filme para avaliar</p>
+</div>
+
+<div class="movies-grid">
+    {% for movie in movies %}
+    <a href="{{ url_for('movies.details', id=movie.id) }}" class="movie-card">
+        <div class="movie-poster">
+            <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy">
+            <div class="movie-overlay">
+                <button class="movie-btn">Avaliar</button>
+            </div>
+        </div>
+        <h3 class="movie-title">{{ movie.title }}</h3>
+    </a>
+    {% endfor %}
+</div>
 {% endblock %}
