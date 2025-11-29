@@ -7,10 +7,6 @@ DB_PATH = os.path.join(os.path.dirname(__file__), "reviewhub.db")
 BASE_DIR = os.path.dirname(__file__)
 
 def init_db():
-    if os.path.exists(DB_PATH):
-        print("Banco já existe — não vou reinicializar.")
-        return
-    
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 

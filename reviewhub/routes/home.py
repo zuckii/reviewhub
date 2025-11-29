@@ -5,11 +5,8 @@ home_bp = Blueprint("home", __name__)
 
 @home_bp.route("/")
 def homepage():
-    # If the user is not authenticated and guest mode is not enabled,
-    # redirect to the login screen. Otherwise render the movies index.
-    if not session.get('user_id') and not session.get('guest_mode'):
-        return redirect(url_for('auth.login'))
-
+    # A página home pode ser acessada sem login e com guest mode ativado
+    # Porém a details não pode ser acessada sem login e com guest mode ativado
     movies = get_all_movies()
     return render_template("home/index.html", movies=movies)
 

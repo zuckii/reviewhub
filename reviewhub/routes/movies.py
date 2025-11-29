@@ -6,8 +6,15 @@ movies_bp = Blueprint("movies", __name__, url_prefix="/movies")
 @movies_bp.route("/<int:id>")
 def details(id):
     
-    if not session.get('user_id') and not session.get('guest_mode'):
-        return redirect(url_for('auth.login'))
+    # A pagina details necessita de login.
+    # Nem guest mode pode acessar a página details 
+    
+    # DESCOMENTAR LINHAS POS DESENVOLVIMENTO
+    # if not session.get('user_id'):
+    #     return redirect(url_for('auth.login'))
+
+    # if session.get('guest_mode'):
+    #     return redirect(url_for('auth.login'))
 
     movies = get_all_movies()
 

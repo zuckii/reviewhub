@@ -14,7 +14,6 @@ def register():
 
 @auth_bp.route("/guest")
 def guest_login():
-    # enable guest mode for development
     session['guest_mode'] = True
     return redirect(url_for("home.homepage"))
 

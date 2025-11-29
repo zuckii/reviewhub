@@ -27,10 +27,9 @@
                     {% if session.get('user_id') %}
                         <li><a href="{{ url_for('auth.logout') }}" class="btn">Sair</a></li>
                     {% elif session.get('guest_mode') %}
-                        <!-- Guest users are not registered; show Entrar so they can log in/register -->
                         <li><a href="{{ url_for('auth.login') }}" class="btn">Entrar</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('auth.login') }}">Entrar</a></li>
+                        <li><a href="{{ url_for('auth.login') }}" class="btn">Entrar</a></li>
                         <li><a href="{{ url_for('auth.register') }}" class="btn">Cadastrar</a></li>
                     {% endif %}
                 </ul>
