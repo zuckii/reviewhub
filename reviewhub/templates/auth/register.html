@@ -5,14 +5,25 @@
 {% block content %}
     <div class="auth-container">
         <h1>Criar Conta</h1>
-        <form method="POST" class="auth-form">
-            <input name="name" placeholder="Nome">
-            <input name="username" placeholder="Username">
-            <input name="password" placeholder="Senha" type="password">
+        <form method="POST" action="{{ url_for('auth.register_page') }}" class="auth-form">
+            <input name="name" required placeholder="Nome">
+            <input name="username" required placeholder="Username">
+            <input name="password" required placeholder="Senha" type="password">
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flash-messages">
+                        {% for msg in messages %}
+                            <li>{{ msg }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            
             <button type="submit" class="btn">Criar Conta</button>
         </form>
         <div class="auth-links">
-            <p>Já tem uma conta? <a href="{{ url_for('auth.login') }}">Faça login</a></p>
+            <p>Já tem uma conta? <a href="{{ url_for('auth.login_page') }}">Faça login</a></p>
         </div>
     </div>
 {% endblock %}

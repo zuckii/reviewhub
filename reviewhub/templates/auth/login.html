@@ -5,14 +5,25 @@
 {% block content %}
     <div class="auth-container">
         <h1>ReviewHub</h1>
-        <form method="POST" class="auth-form">
-            <input name="username" placeholder="Username">
-            <input name="password" placeholder="Senha" type="password">
+        <form action="{{ url_for('auth.login') }}" method="POST" class="auth-form">
+            <input name="username" required placeholder="Username">
+            <input name="password" required placeholder="Senha" type="password">
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flash-messages">
+                        {% for msg in messages %}
+                            <li>{{ msg }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}            
+
             <button type="submit" class="btn">Entrar</button>
         </form>
         
         <div class="auth-links">
-            <p>Ainda não tem uma conta? <a href="{{ url_for('auth.register') }}">Registre-se</a></p>
+            <p>Ainda não tem uma conta? <a href="{{ url_for('auth.register_page') }}">Registre-se</a></p>
             <p>Ou <a href="{{ url_for('auth.guest_login') }}" class="guest-link">entre como convidado</a></p>
         </div>
     </div>

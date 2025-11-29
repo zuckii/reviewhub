@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, session
+from flask import Blueprint, render_template, redirect, url_for, session, flash
 from db.database import get_all_movies
 
 movies_bp = Blueprint("movies", __name__, url_prefix="/movies")
@@ -8,13 +8,13 @@ def details(id):
     
     # A pagina details necessita de login.
     # Nem guest mode pode acessar a página details 
-    
-    # DESCOMENTAR LINHAS POS DESENVOLVIMENTO
-    # if not session.get('user_id'):
-    #     return redirect(url_for('auth.login'))
+    if not session.get('user_id'):
+        flash("Para avaliar é necessário realizar login.")
+        return redirect(url_for('auth.login_page'))
 
-    # if session.get('guest_mode'):
-    #     return redirect(url_for('auth.login'))
+    if not session.get('guest_mode'):
+        flash("Para avaliar é necessário realizar login.")
+        return redirect(url_for('auth.login_page'))
 
     movies = get_all_movies()
 

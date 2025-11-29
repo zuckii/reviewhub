@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/movies-grid.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
 
     {% block head %}{% endblock %}
 </head>
@@ -27,10 +28,10 @@
                     {% if session.get('user_id') %}
                         <li><a href="{{ url_for('auth.logout') }}" class="btn">Sair</a></li>
                     {% elif session.get('guest_mode') %}
-                        <li><a href="{{ url_for('auth.login') }}" class="btn">Entrar</a></li>
+                        <li><a href="{{ url_for('auth.login_page') }}" class="btn">Entrar</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('auth.login') }}" class="btn">Entrar</a></li>
-                        <li><a href="{{ url_for('auth.register') }}" class="btn">Cadastrar</a></li>
+                        <li><a href="{{ url_for('auth.login_page') }}" class="btn">Entrar</a></li>
+                        <li><a href="{{ url_for('auth.register_page') }}" class="btn">Cadastrar</a></li>
                     {% endif %}
                 </ul>
             </nav>

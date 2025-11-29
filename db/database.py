@@ -2,6 +2,7 @@ import json
 import sqlite3
 import os
 from flask import current_app, g
+from reviewhub.utils.security import hash_senha
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "reviewhub.db")
 BASE_DIR = os.path.dirname(__file__)
@@ -46,7 +47,19 @@ def init_db():
             raise Exception(
                 f"Nenhum id de genero encontrado para o filme '{filme['nome']}', genero '{filme['genero']}'"
             )
-            
+
+    cur.execute("SELECT id FROM Usuario WHERE username = ?", ("admin",))
+    admin_exists = cur.fetchone()
+
+    # Verificando se já existe usuario padrão
+    if not admin_exists:
+        senha = hash_senha("admin")
+        print("Criando admin padrão")
+        cur.execute("""INSERT INTO Usuario (nome, username, senha) VALUES (?, ?, ?)""",
+                    ("admin", "admin", senha))
+    else:
+        print("Admin já existe")
+
     conn.commit()
     conn.close()
 
@@ -78,3 +91,25 @@ def get_movie_by_id(fid):
         "SELECT * FROM Filmes WHERE id = ?",
         (fid,)
     ).fetchone()
+
+def get_user_by_username(username):
+    db = get_db()
+    return db.execute("SELECT * FROM Usuario WHERE username = ?", 
+                      (username,)
+                      ).fetchone()
+
+
+def get_userId_by_username(username):
+    db = get_db()
+    return db.execute("SELECT id FROM Usuario WHERE username = ?", 
+                      (username,)
+                      ).fetchone()
+
+def insert_user(nome, username, senha):
+    db = get_db()
+    db.execute(
+            "INSERT INTO Usuario (nome, username, senha) VALUES (?, ?, ?)",
+            (nome, username, senha)
+        )
+    db.commit()
+    
