@@ -154,3 +154,13 @@ def get_rating_by_movie(filme_id, user_id):
 
 
     return [dict(row) for row in query]
+
+def get_movie_rating_average(filme_id):
+    db = get_db()
+    query = db.execute("""
+        SELECT AVG(nota) AS media
+        FROM Avaliacao
+        WHERE filme_id = ?
+    """, (filme_id,)).fetchone()
+
+    return query["media"] if query["media"] is not None else 0
