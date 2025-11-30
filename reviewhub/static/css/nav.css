@@ -92,3 +92,44 @@
     } 
 }
 
+.site-nav .nav-username {
+    font-weight: 600;
+    color: var(--text-main, #374151);
+    font-size: 0.9rem;
+    margin-right: -1rem;
+}
+
+@media (max-width: 480px) {
+    .site-nav .nav-username {
+        display: none;
+    }
+}
+
+.site-nav .nav-username {
+    /* Layout Flex para alinhar o emoji e o texto */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espaço entre o emoji e o nome */
+    
+    /* Tipografia Minimalista */
+    font-weight: 600;
+    color: var(--text-main, #374151); /* Cor escura suave */
+    font-size: 0.95rem;
+    
+    /* Espaçamento */
+    margin-right: 0.75rem; /* Dá um espaço antes do botão "Sair" */
+}
+
+/* O Emoji de Utilizador */
+.site-nav .nav-username::before {
+    content: "👤"; 
+    font-size: 1.1em; /* Ligeiramente maior que o texto */
+    opacity: 0.8; /* Opacidade para não distrair muito */
+}
+
+/* Esconder em ecrãs muito pequenos (telemóveis) para não quebrar o menu */
+@media (max-width: 480px) {
+    .site-nav .nav-username {
+        display: none; 
+    }
+}

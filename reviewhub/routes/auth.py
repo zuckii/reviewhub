@@ -29,6 +29,7 @@ def login():
 
     session["user_id"] = user["id"]
     session["user_nome"] = user["nome"]
+    session["username"] = user["username"]
 
     return redirect(url_for("home.homepage"))
 
@@ -73,5 +74,6 @@ def logout():
     # clear user session and redirect to login
     session.pop("user_id", None)
     session.pop("user_nome", None)
+    session.pop("username", None)
     session.pop("guest_mode", None)
     return redirect(url_for("auth.login_page"))
