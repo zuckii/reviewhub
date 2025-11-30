@@ -20,6 +20,11 @@
         padding: 0.65rem 1.25rem; 
         font-size: 0.85rem; 
     }
+
+    .genre-filter select {
+        font-size: 0.9rem;
+        padding: 0.7rem 2rem 0.7rem 0.8rem;
+    }
 }
 
 .movie-btn {
@@ -58,7 +63,7 @@
     text-decoration: none;
     font-weight: 500;
     transition: color var(--tp);
-    margin-left: 1rem; /* Pequeno espaçamento lateral */
+    margin-left: 1rem; 
 }
 
 .btn-cancel:hover {
