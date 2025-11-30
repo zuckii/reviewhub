@@ -97,3 +97,7 @@ main {
 .movie-title { 
     display: none !important; 
 }
+
+#subtitle-movie{
+    margin: auto;
+}

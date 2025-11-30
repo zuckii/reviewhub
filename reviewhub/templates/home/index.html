@@ -3,23 +3,22 @@
 {% block title %}Filmes - ReviewHub{% endblock %}
 
 {% block content %}
-<div class="movies-header">
-    <h1>Filmes Populares</h1>
-    <p class="subtitle">Selecione um filme para avaliar</p>
-</div>
+
+
 
 <form method="get" class="genre-filter">
     <select name="genero" onchange="this.form.submit()">
         <option value="">Todos os gêneros</option>
-
+        
         {% for genero in generos %}
-            <option value="{{ genero['nome'] }}"
-            {% if selected_genero == genero['nome'] %}selected{% endif %}>
-            {{ genero['nome'] }}
-            </option>
-        {% endfor %}
-    </select>
+        <option value="{{ genero['nome'] }}"
+        {% if selected_genero == genero['nome'] %}selected{% endif %}>
+        {{ genero['nome'] }}
+    </option>
+    {% endfor %}
+</select>
 </form>
+<p id="subtitle-movie">Selecione um filme para avaliar</p>
 
 <div class="movies-grid">
     {% for movie in movies %}
