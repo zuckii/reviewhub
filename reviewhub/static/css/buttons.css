@@ -85,7 +85,6 @@
 
 
 .genre-filter select {
-    
     width: 100%;
     max-width: 350px; 
     padding: 0.8rem 2.5rem 0.8rem 1rem; 
@@ -173,7 +172,7 @@
 
 .input-wrapper input {
     width: 100%;
-    padding-right: 40px; /* espaço para o botão */
+    padding-right: 40px; 
 }
 
 .input-wrapper .toggle-btn {
@@ -185,4 +184,12 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-weight: 500;
 }

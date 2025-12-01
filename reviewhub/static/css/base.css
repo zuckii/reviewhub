@@ -50,6 +50,10 @@ span {
         width: 92%; 
         padding: 0.75rem 0; 
     } 
+
+    h1 { 
+        font-size: 1.5rem; 
+    } 
 }
 
 @media (max-width: 480px) { 
@@ -57,25 +61,16 @@ span {
         width: 95%; 
         padding: 0.5rem 0; 
     } 
+    h1 { 
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem; 
+    } 
 }
 
 h1 {
     margin: 0 0 0.5rem 0;
     color: #0f172a;
     font-size: 2rem;
-}
-
-@media (max-width: 768px) { 
-    h1 { 
-        font-size: 1.5rem; 
-    } 
-}
-
-@media (max-width: 480px) { 
-    h1 { 
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem; 
-    } 
 }
 
 p {

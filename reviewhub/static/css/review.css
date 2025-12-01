@@ -5,14 +5,12 @@
     overflow-x: hidden;
 }
 
-/* =========================================
+/* 
    1. HERO SECTION (Grid Principal)
-   ========================================= 
 */
 
 .review-hero {
     display: grid;
-    /* Coluna do Poster: 40% da tela (Fixo) | Conteúdo: Restante */
     grid-template-columns: 40% 1fr; 
     gap: 4rem;
     align-items: start;
@@ -21,15 +19,12 @@
 
 /* --- Coluna do Poster (Esquerda) --- */
 .poster-column {
-    /* Altura fixa para garantir que fique "grandão" */
     position: sticky;
     top: 0;
-    
-    /* Centralização */
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f8fafc; /* Fundo muito sutil para destacar a área */
+    background: #f8fafc; 
     border-right: 1px solid var(--border);
     padding: 2rem;
 }
@@ -53,13 +48,13 @@
     object-fit: contain;
     filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
     transition: transform 0.3s ease;
-    border-radius: 12px; /* Agora a borda vai colar na imagem */
+    border-radius: 12px; 
 }
 
 /* --- Coluna de Conteúdo (Direita) --- */
 .content-column {
-    padding-top: 4rem; /* Alinha visualmente com o topo do poster */
-    padding-right: 10%; /* Respiro na direita */
+    padding-top: 4rem; 
+    padding-right: 10%; 
     max-width: 800px;
 }
 
@@ -81,9 +76,8 @@
     font-weight: 500;
 }
 
-/* =========================================
+/* 
    2. SISTEMA DE ESTRELAS (Simplificado)
-   ========================================= 
 */
 
 .rating-box {
@@ -100,36 +94,31 @@
 
 .stars {
     display: flex;
-    gap: 4px; /* Espaço fixo entre as caixas das estrelas */
+    gap: 4px; 
     cursor: pointer;
-    /* Garante alinhamento vertical perfeito */
     align-items: center; 
     justify-content: center;
 }
 
 .star {
-    /* 1. CAIXA RÍGIDA: Tamanho fixo que nunca muda */
+    
     width: 56px;  
     height: 56px;
     
-    /* 2. CENTRALIZAÇÃO ABSOLUTA: O ícone fica flutuando no meio da caixa */
+    
     display: flex;
     align-items: center;
     justify-content: center;
     
-    /* 3. ESTABILIDADE: Impede qualquer mudança de tamanho */
+    
     flex-shrink: 0;
     box-sizing: border-box;
-    
-    /* Estilo do Ícone */
     font-size: 3rem;
+
     color: var(--gray-star);
-    
-    /* Apenas a cor muda, nada de transform/scale/padding */
     transition: color 0.1s ease;
 }
 
-/* Remove qualquer margem ou padding que o navegador possa adicionar ao ícone */
 .star::before {
     margin: 0;
     padding: 0;
@@ -143,22 +132,9 @@
     margin-top: 0.5rem;
 }
 
-/* =========================================
-   3. FORMULÁRIO & BOTÕES
-   ========================================= 
-*/
 
-.char-counter {
-    text-align: right;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 0.5rem;
-    font-weight: 500;
-}
-
-/* =========================================
-   4. SEÇÃO DE REVIEWS (LISTA)
-   ========================================= 
+/* 
+   3. SEÇÃO DE REVIEWS (LISTA)
 */
 
 .separator {
@@ -178,7 +154,7 @@
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: #fdfdfd; /* Cor aproximada do fundo para mascarar a linha */
+    background: #fdfdfd; 
     padding: 0 15px;
     color: var(--text-muted);
     font-size: 1.2rem;
@@ -263,9 +239,9 @@
 
 
 .text-error {
-    color: #dc2626 !important; /* Vermelho forte */
+    color: #dc2626 !important; 
     font-weight: 800 !important;
-    animation: shake 0.4s ease-in-out; /* Opcional: faz o texto tremer */
+    animation: shake 0.4s ease-in-out; 
 }
 
 @keyframes shake {
@@ -274,20 +250,19 @@
     75% { transform: translateX(5px); }
 }
 
-/* =========================================
-   5. RESPONSIVIDADE (Mobile)
-   ========================================= 
+/* 
+   4. RESPONSIVIDADE (Mobile)
 */
 
 @media (max-width: 900px) {
     .review-hero {
-        grid-template-columns: 1fr; /* Empilha tudo em 1 coluna */
+        grid-template-columns: 1fr; 
         gap: 0;
     }
 
     .poster-column {
         height: auto;
-        position: static; /* Remove o sticky no mobile */
+        position: static; 
         border-right: none;
         border-bottom: 1px solid var(--border);
         padding: 2rem 1rem;
@@ -295,7 +270,7 @@
     }
 
     .poster-container img {
-        max-height: 400px; /* Limita altura no celular */
+        max-height: 400px; 
     }
 
     .content-column {
@@ -308,7 +283,7 @@
     }
 
     .stars label {
-        font-size: 2.5rem; /* Estrelas um pouco menores no celular */
+        font-size: 2.5rem; 
         width: 20px;
         height: 44px;
     }
@@ -324,7 +299,7 @@
     margin-top: 8px;
     font-size: 1.3rem;
     font-weight: 600;
-    color: var(--gold);            /* amarelo 'star' */
+    color: var(--gold);
     background: #1c1c1c;
     padding: 6px 14px;
     border-radius: 12px;
@@ -334,7 +309,7 @@
 }
 
 #media::before {
-    content: "\f005";          /* ícone da estrela */
+    content: "\f005";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
 }
