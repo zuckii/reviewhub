@@ -10,6 +10,10 @@
     transition: background var(--tp), transform var(--tp);
 }
 
+#sair{
+    margin-top: 0.35rem;
+}
+
 .btn:hover, .movie-btn:hover {
     background: var(--accent-600);
     transform: translateY(-2px);
