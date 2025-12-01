@@ -21,6 +21,19 @@ def details_page(id):
     
     return render_template("movies/details.html", movie=movie)
 
+@movies_bp.route("/mine")
+def mine_reviews_page():
+    
+    # A pagina de listagem de avaliações necessita de login.
+    if not session.get('user_id'):
+        flash("Para listar suas avaliações é necessário realizar login.", "nok")
+        return redirect(url_for('auth.login_page'))
+    
+    reviews = get_reviews_by_user(session.get('user_id'))
+    
+    return render_template("movies/mine.html", reviews=reviews)
+
+
 
 @movies_bp.post("/<int:id>")
 def details(id):
