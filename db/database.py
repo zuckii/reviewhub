@@ -132,3 +132,32 @@ def insert_review(usuario_id, filme_id, nota, comentario):
         VALUES (?, ?, ?, ?)
     """, (usuario_id, filme_id, nota, comentario))
     db.commit()
+
+def update_review(usuario_id, filme_id, nota, comentario):
+    db = get_db()
+    db.execute("""
+        UPDATE Avaliacao
+        SET nota = ?, comentario = ?
+        WHERE usuario_id = ? AND filme_id = ?
+    """, (nota, comentario, usuario_id, filme_id))
+    db.commit()
+
+def get_reviews_by_user(usuario_id):
+    db = get_db()
+    return db.execute("""
+        SELECT
+            a.nota
+            , a.comentario
+            , f.nome as filme_nome
+            , f.imagem as filme_imagem
+            , f.id as filme_id
+        FROM Avaliacao a inner join Filmes f on a.filme_id = f.id WHERE usuario_id = ?
+    """, (usuario_id,)).fetchall()
+
+
+def delete_review(usuario_id, filme_id):
+    db = get_db()
+    db.execute("""
+        DELETE FROM Avaliacao WHERE usuario_id = ? AND filme_id = ?
+    """, (usuario_id, filme_id))
+    db.commit()
