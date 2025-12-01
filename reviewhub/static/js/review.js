@@ -14,6 +14,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentRating = 0;
 
     // =================================================================
+    // 0. DETECTAR SE É MODO EDIÇÃO E INICIALIZAR
+    // =================================================================
+    const isEditMode = textarea.value.trim().length > 0;
+
+    // Se houver um review existente, carregar os valores
+    if (isEditMode) {
+        // A nota está no ratingText (vindo do template)
+        const ratingValue = parseFloat(ratingText.textContent);
+        if (!isNaN(ratingValue) && ratingValue > 0) {
+            currentRating = ratingValue;
+            hiddenInput.value = currentRating;
+            updateStarsVisual(currentRating);
+            // Manter o texto da nota visível
+            ratingText.style.color = '#eab308';
+            ratingText.style.fontWeight = 'bold';
+        }
+    }
+
+    // =================================================================
     // 1. LÓGICA DAS ESTRELAS
     // =================================================================
     stars.forEach((star) => {
@@ -94,7 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Rola a tela para garantir visualização
                 ratingText.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else if (isEditMode) {
+                // Se for edição, submeter para rota /update/<id>
+                e.preventDefault();
+                
+                const movieId = window.location.pathname.split('/').pop();
+                form.action = `/movies/update/${movieId}`;
+                form.submit();
             }
+            // Se não for edição, deixa fazer POST normal para /movies/<id>
         });
     }
 

@@ -34,19 +34,8 @@
                         <i class="fa-solid fa-star star" data-value="5"></i>
                     </div>
                     
-                    <div id="rating-text" class="rating-text">Selecione uma nota</div>
+                    <div id="rating-text" class="rating-text">{% if review %}{{ review.nota }}{% else %}Selecione uma nota{% endif %}</div>
                 </div>
-
-                {% with messages = get_flashed_messages(with_categories=True) %}
-                    {% if messages %}
-                        <ul class="flash-messages">
-                            {% for msg in messages %}
-                                <li class="{{msg[0]}}">{{ msg[1] }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endwith %}
-
 
                 <div class="form-group">
                     <textarea 
@@ -55,8 +44,8 @@
                         placeholder="Escreva sua análise..." 
                         maxlength="1000" 
                         required
-                    ></textarea>
-                <div id="char-counter" class="char-counter">0 / 1000</div>
+                    >{% if review %}{{ review.comentario }}{% endif %}</textarea>
+                <div id="char-counter" class="char-counter">{% if review %}{{ review.texto|length }}{% else %}0{% endif %} / 1000</div>
             </div>
 
                 <div class="action-bar">
