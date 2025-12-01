@@ -72,3 +72,28 @@ def details(id):
         return redirect(url_for("movies.details_page", id=id))
 
     return redirect(url_for("home.homepage"))
+
+
+@movies_bp.post("/update/<int:id>")
+def update_review_route(id):
+    user_id = session.get("user_id")
+    
+    if not user_id:
+        flash("Para atualizar avaliações é necessário realizar login.", "nok")
+        return redirect(url_for('auth.login_page'))
+    
+    nota = float(request.form.get("rating"))
+    comentario = request.form.get("review")
+
+    if nota < 0 or nota > 5:
+        flash("Nota inválida. Deve ser entre 0 e 5.", "nok")
+        return redirect(url_for("movies.details_page", id=id))
+
+    try:
+        update_review(user_id, id, nota, comentario)
+        flash("Avaliação atualizada com sucesso!", "ok")
+    except Exception as e:
+        flash(f"Erro ao atualizar avaliação: {e}", "nok")
+        return redirect(url_for("movies.details_page", id=id))
+
+    return redirect(url_for("home.homepage"))
